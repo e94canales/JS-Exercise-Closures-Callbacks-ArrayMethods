@@ -132,8 +132,10 @@ function processProduct(num1, num2, callback) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+function processDuplicateFree(list, callback) {
+  return callback(list.filter(function(number, index){
+    return list.indexOf(number) === index
+  }))
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -155,8 +157,12 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * 
  * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function lowerCaseStrings(/* code here */) {
-  /* code here */
+function lowerCaseStrings(strings) {
+  let newArray = [];
+  strings.forEach(function(element){
+     newArray.push(element.toLowerCase());
+  })
+  return newArray
 }
 
 /**
@@ -174,8 +180,10 @@ function lowerCaseStrings(/* code here */) {
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(strings) {
+  return strings.map(function(element){
+    return element == "apple" 
+  })
 }
 
 /**
@@ -194,8 +202,10 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
-  /* code here */
+function removeApple(strings) {
+  return strings.filter(function(element){
+    return element !== "apple"
+  })
 }
 
 /**
@@ -213,8 +223,10 @@ function removeApple(/* code here */) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
-  /* code here */
+function stringSmash(strings) {
+  return strings.reduce(function(word1, word2){
+    return word1 + word2
+  }) 
 }
 
 // A local community center is holding a fund raising 5k fun run and has invited
@@ -232,8 +244,10 @@ function stringSmash(/* code here */) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  return runners.map(function(element){
+    return `${element.last_name}, ${element.first_name}`
+  })
 }
 
 /**
@@ -248,8 +262,10 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(runners) {
+  return runners.map(function(element){
+      return element.first_name.toUpperCase()
+  })
 }
 
 /**
@@ -266,8 +282,10 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  return runners.filter(function(element){
+    return element.shirt_size === tShirtSize
+  })
 }
 
 /**
@@ -281,8 +299,10 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  return runners.reduce(function(sum1,sum2){
+    return sum1 + sum2.donation
+  } , 0)
 }
 
 /////////////// CLOSURES ///////////////
@@ -295,11 +315,12 @@ function tallyUpDonations(/* CODE HERE */) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ *  counter1 uses a closure and counter 2 doesn't
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *  counter1, because it is nested
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ *  counter1 would be preferable if you are  working on a big project and have any similar variable names and
+ *  counter 2 would be the opposite
 */
 
 // counter1 code
