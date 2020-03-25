@@ -317,7 +317,7 @@ function tallyUpDonations(runners) {
  * 1. What is the difference between counter1 and counter2?
  *  counter1 uses a closure and counter 2 doesn't
  * 2. Which of the two uses a closure? How can you tell?
- *  counter1, because it is nested
+ *  counter1, because it is nested and has variables set only within itself
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *  counter1 would be preferable if you are  working on a big project and have any similar variable names and
  *  counter 2 would be the opposite
@@ -361,8 +361,16 @@ function counter2() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(maxValue) {
+  let count = 0;
+  return function counter() {
+    if (count <= maxValue) {
+      return count++
+    } else if (count > maxValue){
+      count = 0
+      return count++
+    }
+  }  
 }
 
 /////////////// END OF CHALLENGE ///////////////
